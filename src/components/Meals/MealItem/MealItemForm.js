@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-
 import Input from '../../UI/Input';
 import classes from './MealItemForm.module.css';
 
@@ -22,7 +21,7 @@ const MealItemForm = (props) => {
       return;
     }
 
-    props.onAddToCart(enteredAmountNumber);
+    props.onAddToCart(enteredAmountNumber); // This triggers the addItem function in CartContext
   };
 
   return (

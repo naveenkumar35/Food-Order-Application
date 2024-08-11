@@ -4,7 +4,10 @@ const CartContext = React.createContext({
   items: [],
   totalAmount: 0,
   addItem: (item) => {},
-  removeItem: (id) => {}
+  removeItem: (id) => {},
+  clearCart: () => {},
+  saveCartToFirebase: () => {}, // New method to save cart in Firebase
+  initializeCart: (cartData) => {},
 });
 
 export default CartContext;

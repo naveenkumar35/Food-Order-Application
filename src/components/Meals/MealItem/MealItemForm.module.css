@@ -1,20 +1,54 @@
 .form {
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.form button {
-  font: inherit;
-  cursor: pointer;
-  background-color: #8a2b06;
-  border: 1px solid #8a2b06;
+
+.inputContainer {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #ff5722;
+  outline: none;
+}
+
+.submitButton {
+  background-color: #ff5722;
   color: white;
-  padding: 0.25rem 2rem;
-  border-radius: 20px;
-  font-weight: bold;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.form button:hover,
-.form button:active {
-  background-color: #641e03;
-  border-color: #641e03;
+.submitButton:hover,
+.submitButton:active {
+  background-color: #e64a19;
+  transform: scale(1.05);
 }

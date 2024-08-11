@@ -1,0 +1,79 @@
+/* src/components/UI/LoginPage.module.css */
+
+.login {
+  max-width: 40rem;
+  margin: 100px auto;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+}
+
+.login h2 {
+  text-align: center;
+  color: #4f005f;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.control input {
+  font: inherit;
+  padding: 0.25rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.actions {
+  text-align: center;
+}
+
+.loginButton {
+  font: inherit;
+  cursor: pointer;
+  background-color: #4f005f;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #4f005f;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.loginButton:hover,
+.loginButton:active {
+  background-color: #741188;
+  border-color: #741188;
+}
+
+.signupLink {
+  color: #4f005f;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.signupLink:hover,
+.signupLink:active {
+  color: #741188;
+}

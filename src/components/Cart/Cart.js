@@ -1,15 +1,19 @@
-import { useContext } from 'react';
-
+import { useContext, useState } from 'react';
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import CartContext from '../../store/cart-context';
+import AddressModal from '../Meals/AddressForm';
+import { useAuth } from '../../store/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
-
+  const { user } = useAuth(); // Get user from AuthContext
+  const [showAddressModal, setShowAddressModal] = useState(false);
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
+  const navigate = useNavigate();
 
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
@@ -17,6 +21,22 @@ const Cart = (props) => {
 
   const cartItemAddHandler = (item) => {
     cartCtx.addItem({ ...item, amount: 1 });
+  };
+
+  const orderHandler = () => {
+    if (user?.address) {
+      navigate('/summary', { state: { ...user.address } });
+      cartCtx.clearCart();  // Clear the cart after placing the order
+    } else {
+      setShowAddressModal(true);
+    }
+    props.onClose();
+  };
+  
+
+  const cartItemClickHandler = (id) => {
+    props.onClose();
+    navigate(`/item/${id}`);
   };
 
   const cartItems = (
@@ -29,10 +49,16 @@ const Cart = (props) => {
           price={item.price}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
           onAdd={cartItemAddHandler.bind(null, item)}
+          onClick={() => cartItemClickHandler(item.id)} // Handle click to redirect to detail page
         />
       ))}
     </ul>
   );
+
+  const addressModalClose = () => {
+    setShowAddressModal(false);
+    props.onClose();
+  }
 
   return (
     <Modal onClose={props.onClose}>
@@ -45,8 +71,9 @@ const Cart = (props) => {
         <button className={classes['button--alt']} onClick={props.onClose}>
           Close
         </button>
-        {hasItems && <button className={classes.button}>Order</button>}
+        {hasItems && <button className={classes.button} onClick={orderHandler}>Order</button>}
       </div>
+      {showAddressModal && <AddressModal onClose={addressModalClose} />}
     </Modal>
   );
 };
